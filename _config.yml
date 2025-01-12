@@ -26,7 +26,9 @@ domain: vallabhvidy.github.io
 baseurl: "" # the subpath of your site, e.g. /blog
 url: https://vallabhvidy.github.io # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  vallabhvidy
-mastodon_username: vallabhvidy
+mastodon:
+  - username: vallabhvidy
+    instance: mastodon.social
 
 # Build settings
 theme: minima
