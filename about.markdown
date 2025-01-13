@@ -17,4 +17,4 @@ You can find the source code for Jekyll at GitHub:
 
 [jekyll-organization]: https://github.com/jekyll -->
 
-I love music, science and philosophy.
+I love music, science, cosmology and philosophy.
