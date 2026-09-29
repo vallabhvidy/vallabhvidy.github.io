@@ -685,3 +685,50 @@ footer {
 .footer-links a:hover {
   color: var(--color-ctp-accent);
 }
+
+/* About Avatar & Header */
+.about-header-flex {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .about-header-flex {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+}
+
+.about-intro-text {
+  flex: 1;
+}
+
+.about-intro-text p:first-of-type {
+  margin-top: 0;
+}
+
+.about-avatar-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.about-avatar {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-ctp-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.about-avatar:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-ctp-accent);
+}
