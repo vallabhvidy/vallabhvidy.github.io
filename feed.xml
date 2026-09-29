@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vallabh Vidyasagar</title>
+    <description>Systems programmer, distributed systems, C++, and Linux enthusiast.</description>
+    <link>https://vallabhvidy.github.io/</link>
+    <atom:link href="https://vallabhvidy.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Sep 2026 12:00:00 +0530</lastBuildDate>
+
+    <item>
+      <title>Zenza: Distributed Code Benchmarking Platform</title>
+      <description>Architecting an asynchronous distributed benchmarking engine with FastAPI, Redis queues, and secure container sandboxing.</description>
+      <pubDate>Thu, 20 Aug 2026 00:00:00 +0000</pubDate>
+      <link>https://vallabhvidy.github.io/posts/zenza/</link>
+      <guid>https://vallabhvidy.github.io/posts/zenza/</guid>
+    </item>
+
+    <item>
+      <title>micrograd-cpp: Dynamic Autograd Engine in C++</title>
+      <description>Reimplementing Andrej Karpathy's autograd engine in modern C++ with dynamic DAG construction, reverse-mode backpropagation, and smart pointers.</description>
+      <pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate>
+      <link>https://vallabhvidy.github.io/posts/micrograd-cpp/</link>
+      <guid>https://vallabhvidy.github.io/posts/micrograd-cpp/</guid>
+    </item>
+
+    <item>
+      <title>CubeTimer: Building a GTK4 Solves Manager for Flathub</title>
+      <description>Developing a native GNOME desktop application for speedcubers using GTK4, LibAdwaita, and SQLite, reaching 2,900+ active users.</description>
+      <pubDate>Sun, 08 Feb 2026 00:00:00 +0000</pubDate>
+      <link>https://vallabhvidy.github.io/posts/cubetimer/</link>
+      <guid>https://vallabhvidy.github.io/posts/cubetimer/</guid>
+    </item>
+  </channel>
+</rss>

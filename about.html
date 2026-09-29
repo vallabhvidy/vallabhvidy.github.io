@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>~/about.md</title>
+  <meta name="description"
+    content="About Vallabh Vidyasagar: Computer Engineering student at PICT, systems developer, and competitive programmer." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="alternate" type="application/rss+xml" title="Vallabh Vidyasagar" href="/feed.xml" />
+
+  <script>
+    (function () {
+      const t = localStorage.getItem('theme');
+      if (t === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav-container">
+      <div class="nav-links">
+        <a href="/" class="nav-link inactive">~/</a>
+        <a href="/posts/" class="nav-link inactive">~/posts/</a>
+        <a href="/projects/" class="nav-link inactive">~/projects.md</a>
+        <a href="/about/" class="nav-link active">~/about.md</a>
+      </div>
+
+      <button onclick="toggleTheme()" aria-label="Toggle theme" class="theme-toggle-btn">
+        <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="icon hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M3 12H1m22 0h-2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M12 7a5 5 0 100 10A5 5 0 0012 7z" />
+        </svg>
+
+        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="animate-page">
+    <div>
+      <h1 class="page-title">~/about.md</h1>
+      <div class="page-divider"></div>
+
+      <div class="prose">
+        <h1>About</h1>
+        <p>Hi, I'm <strong>Vallabh Vidyasagar</strong> — a systems-focused software engineer and student based in Pune, India.</p>
+        <p>I study Computer Engineering at <strong>Pune Institute of Computer Technology (PICT)</strong> (CGPA: <strong>9.71 / 10</strong>). I'm obsessed with low-level systems, concurrency, compilers, Linux, and figuring out how things work under the hood by implementing them from scratch.</p>
+
+        <h2>Experience</h2>
+        <p><strong>Software Development Intern @ Enable Engineering</strong> (Apr 2026 – Aug 2026 · Remote)</p>
+        <ul>
+          <li>Developed a cross-platform Flutter retirement planning application from scratch across 6 screens, complete with auth, financial calculation engines, and interactive cashflow charts.</li>
+          <li>Built a computer vision pipeline using MediaPipe Pose Landmarker and Selfie Segmenter to compute precise body measurements from standing photos.</li>
+          <li>Benchmarked 17 virtual try-on architectures (10 commercial APIs and 3 local models) across latency, texture fidelity, and edge artifacting.</li>
+          <li>Engineered production Flutter redesign across 11 screens for user onboarding, avatar setup, and checkout workflows.</li>
+        </ul>
+
+        <h2>What I use</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Tools & Technologies</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Languages</td>
+                <td>C, C++, Python, Dart, Java, SQL</td>
+              </tr>
+              <tr>
+                <td>Systems & DevOps</td>
+                <td>Linux, Docker, Podman, Redis, Git</td>
+              </tr>
+              <tr>
+                <td>Backend & Frameworks</td>
+                <td>FastAPI, Pydantic, Firebase, AsyncIO</td>
+              </tr>
+              <tr>
+                <td>GUI & Desktop</td>
+                <td>GTK4 / LibAdwaita (GNOME), Flutter</td>
+              </tr>
+              <tr>
+                <td>Databases</td>
+                <td>SQLite, Redis, MySQL, MongoDB</td>
+              </tr>
+              <tr>
+                <td>Editor & Environment</td>
+                <td>Neovim, VS Code, GNOME Builder, bash/zsh</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Achievements & Competitions</h2>
+        <ul>
+          <li><strong>Urban Vision Hackathon</strong> (hosted by IISc Bangalore) — 4th Rank.</li>
+          <li><strong>PCSB Xenia Codeverse 2026</strong> — 1st Rank.</li>
+          <li><strong>Codeforces</strong>: Specialist (Peak 1411, contest best rank 1284).</li>
+          <li><strong>CodeChef</strong>: 3 Stars (Peak 1667, contest best rank 35).</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>Feel free to reach out for collaborations, systems discussions, or opportunities:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:vallabhvidy10@gmail.com">vallabhvidy10@gmail.com</a></li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/vallabhvidy" target="_blank" rel="noreferrer">github.com/vallabhvidy</a></li>
+          <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/vallabhvidy" target="_blank" rel="noreferrer">linkedin.com/in/vallabhvidy</a></li>
+          <li><strong>Resume:</strong> <a href="/resume.pdf" target="_blank">resume.pdf</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <span>© 2026 Vallabh Vidyasagar</span>
+      <div class="footer-links">
+        <a href="https://github.com/vallabhvidy" target="_blank" rel="noreferrer">github</a>
+        <a href="https://linkedin.com/in/vallabhvidy" target="_blank" rel="noreferrer">linkedin</a>
+        <a href="mailto:vallabhvidy10@gmail.com">email</a>
+        <a href="/feed.xml">rss</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/theme.js"></script>
+</body>
+
+</html>
