@@ -53,8 +53,8 @@
 
   <main class="animate-page">
     <div style="margin-top: 1rem;">
-      <h1 class="hero-title cursor-blink">
-        Vallabh Vidyasagar
+      <h1 class="hero-title">
+        <span class="hero-title-text">Vallabh Vidyasagar</span><span class="terminal-cursor" aria-hidden="true"></span>
       </h1>
 
       <p class="hero-subtitle animate-item" style="animation-delay: 0.05s;">
@@ -76,8 +76,12 @@
           <a href="/about/" class="tree-link">about.md</a>
         </div>
         <div class="tree-item animate-item" style="animation-delay: 0.5s;">
-          <span class="tree-branch">└──</span>
+          <span class="tree-branch">├──</span>
           <a href="/resume.pdf" target="_blank" class="tree-link">resume.pdf</a>
+        </div>
+        <div class="tree-item animate-item" style="animation-delay: 0.55s;">
+          <span class="tree-branch">└──</span>
+          <a href="/feed.xml" class="tree-link">feed.xml</a>
         </div>
       </div>
 
@@ -105,12 +109,30 @@
           </li>
         </ul>
 
-        <a href="/posts/" class="view-all-link">all posts →</a>
+        <div style="margin-top: 1.25rem;">
+          <a href="/posts/" class="view-all-link" style="margin-top: 0;">all posts →</a>
+        </div>
       </div>
 
+      <!-- Retro Terminal Window Widget for Pixel Art -->
       <div class="animate-item" style="animation-delay: 0.7s;">
-        <div class="pixel-banner">
-          <img src="/static/img/chill-coding-half.gif" alt="Chill coding pixel art" width="498" height="162" />
+        <div class="terminal-card">
+          <div class="terminal-card-header">
+            <div class="terminal-card-dots">
+              <span class="term-dot term-dot-red"></span>
+              <span class="term-dot term-dot-yellow"></span>
+              <span class="term-dot term-dot-green"></span>
+            </div>
+            <span class="terminal-card-title">~/workspace/status.sh</span>
+            <div class="terminal-card-tabs">
+              <button class="term-tab-btn active" onclick="switchVibe('chill', this)">chill</button>
+              <button class="term-tab-btn" onclick="switchVibe('cat', this)">cat</button>
+              <button class="term-tab-btn" onclick="switchVibe('typing', this)">typing</button>
+            </div>
+          </div>
+          <div class="terminal-card-body">
+            <img id="vibe-img" src="/static/img/chill-coding-half.gif" alt="Chill coding pixel art" width="498" height="162" />
+          </div>
         </div>
       </div>
     </div>
@@ -129,6 +151,30 @@
   </footer>
 
   <script src="/static/js/theme.js"></script>
+  <script>
+    const vibes = {
+      chill: { src: '/static/img/chill-coding-half.gif', alt: 'Chill coding pixel art', w: 498, h: 162 },
+      cat: { src: '/static/img/cat-on-computer.gif', alt: 'Cat on computer pixel art', w: 498, h: 400 },
+      typing: { src: '/static/img/typing.gif', alt: 'Typing terminal pixel art', w: 400, h: 400 }
+    };
+
+    function switchVibe(scene, btn) {
+      document.querySelectorAll('.term-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const img = document.getElementById('vibe-img');
+      if (!img || !vibes[scene]) return;
+
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = vibes[scene].src;
+        img.alt = vibes[scene].alt;
+        img.width = vibes[scene].w;
+        img.height = vibes[scene].h;
+        img.style.opacity = '1';
+      }, 150);
+    }
+  </script>
 </body>
 
 </html>
