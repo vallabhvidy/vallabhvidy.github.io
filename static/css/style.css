@@ -726,9 +726,11 @@ footer {
 }
 
 .about-avatar {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
+  width: 140px !important;
+  height: 140px !important;
+  max-width: 140px !important;
+  max-height: 140px !important;
+  object-fit: cover !important;
   border-radius: 0.5rem;
   border: 1px solid var(--color-ctp-border);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
