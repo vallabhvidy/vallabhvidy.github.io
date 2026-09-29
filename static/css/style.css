@@ -732,3 +732,22 @@ footer {
   transform: translateY(-2px);
   border-color: var(--color-ctp-accent);
 }
+
+/* Pixel Art Containers */
+.pixel-banner {
+  margin-top: 2.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-ctp-surface);
+  overflow: hidden;
+  max-width: 498px;
+  background-color: var(--color-ctp-bg-alt);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.pixel-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
