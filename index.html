@@ -114,25 +114,15 @@
         </div>
       </div>
 
-      <!-- Retro Terminal Window Widget for Pixel Art -->
-      <div class="animate-item" style="animation-delay: 0.7s;">
-        <div class="terminal-card">
-          <div class="terminal-card-header">
-            <div class="terminal-card-dots">
-              <span class="term-dot term-dot-red"></span>
-              <span class="term-dot term-dot-yellow"></span>
-              <span class="term-dot term-dot-green"></span>
-            </div>
-            <span class="terminal-card-title">~/workspace/status.sh</span>
-            <div class="terminal-card-tabs">
-              <button class="term-tab-btn active" onclick="switchVibe('chill', this)">chill</button>
-              <button class="term-tab-btn" onclick="switchVibe('cat', this)">cat</button>
-              <button class="term-tab-btn" onclick="switchVibe('typing', this)">typing</button>
-            </div>
-          </div>
-          <div class="terminal-card-body">
-            <img id="vibe-img" src="/static/img/chill-coding-half.gif" alt="Chill coding pixel art" width="498" height="162" />
-          </div>
+      <!-- Ambient Pixel Art Banner -->
+      <div class="animate-item" style="animation-delay: 0.7s; margin-top: 3rem;">
+        <div class="section-divider" style="margin-bottom: 1.25rem;">
+          <span class="section-label">── workspace</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="pixel-frame">
+          <img src="/static/img/chill-coding-half.gif" alt="Workspace pixel art" class="pixel-art-img" width="498" height="162" />
         </div>
       </div>
     </div>
@@ -151,30 +141,6 @@
   </footer>
 
   <script src="/static/js/theme.js"></script>
-  <script>
-    const vibes = {
-      chill: { src: '/static/img/chill-coding-half.gif', alt: 'Chill coding pixel art', w: 498, h: 162 },
-      cat: { src: '/static/img/cat-on-computer.gif', alt: 'Cat on computer pixel art', w: 498, h: 400 },
-      typing: { src: '/static/img/typing.gif', alt: 'Typing terminal pixel art', w: 400, h: 400 }
-    };
-
-    function switchVibe(scene, btn) {
-      document.querySelectorAll('.term-tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const img = document.getElementById('vibe-img');
-      if (!img || !vibes[scene]) return;
-
-      img.style.opacity = '0';
-      setTimeout(() => {
-        img.src = vibes[scene].src;
-        img.alt = vibes[scene].alt;
-        img.width = vibes[scene].w;
-        img.height = vibes[scene].h;
-        img.style.opacity = '1';
-      }, 150);
-    }
-  </script>
 </body>
 
 </html>

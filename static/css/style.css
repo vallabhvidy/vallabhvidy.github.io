@@ -742,105 +742,29 @@ footer {
   border-color: var(--color-ctp-accent);
 }
 
-/* Terminal Retro Window for Pixel Art */
-.terminal-card {
-  margin-top: 2.5rem;
-  margin-bottom: 2rem;
-  border-radius: 0.625rem;
+
+
+
+/* Pixel Art Ambient Frame */
+.pixel-frame {
+  width: 100%;
+  border-radius: 0.5rem;
   border: 1px solid var(--color-ctp-surface);
-  background-color: var(--color-ctp-bg-alt);
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  max-width: 540px;
+  line-height: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.terminal-card:hover {
+.pixel-frame:hover {
   border-color: var(--color-ctp-border);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
 }
 
-.terminal-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.45rem 0.85rem;
-  background-color: var(--color-ctp-surface);
-  border-bottom: 1px solid var(--color-ctp-border);
-  font-size: 0.72rem;
-}
-
-.terminal-card-dots {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.term-dot {
-  width: 0.65rem;
-  height: 0.65rem;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.term-dot-red { background-color: var(--color-ctp-red); }
-.term-dot-yellow { background-color: var(--color-ctp-yellow); }
-.term-dot-green { background-color: var(--color-ctp-green); }
-
-.terminal-card-title {
-  font-family: var(--font-mono);
-  color: var(--color-ctp-subtext);
-  font-size: 0.72rem;
-  user-select: none;
-}
-
-.terminal-card-tabs {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.term-tab-btn {
-  background: transparent;
-  border: 1px solid transparent;
-  color: var(--color-ctp-muted);
-  font-size: 0.68rem;
-  font-family: var(--font-mono);
-  padding: 0.12rem 0.45rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.term-tab-btn:hover {
-  color: var(--color-ctp-text);
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.term-tab-btn.active {
-  color: var(--color-ctp-teal);
-  background-color: rgba(23, 146, 153, 0.2);
-  border-color: rgba(23, 146, 153, 0.4);
-}
-html.dark .term-tab-btn.active {
-  background-color: rgba(148, 226, 213, 0.2);
-  border-color: rgba(148, 226, 213, 0.4);
-}
-
-.terminal-card-body {
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #0b0d14;
-  overflow: hidden;
-}
-
-.terminal-card-body img {
-  display: block;
-  max-width: 100%;
+.pixel-art-img {
+  width: 100%;
   height: auto;
+  display: block;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  transition: opacity 0.2s ease;
 }
