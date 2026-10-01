@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="/static/css/style.css?v=9" />
+  <link rel="stylesheet" href="/static/css/style.css?v=18" />
   <link rel="alternate" type="application/rss+xml" title="Vallabh Vidyasagar" href="/feed.xml" />
 
   <script>
@@ -73,7 +73,8 @@
       <div class="page-divider"></div>
 
       <div class="prose">
-        <h1>Competitive Programming &amp; DSA</h1>
+        <h1>Competitive Programming & DSA</h1>
+        <p>A look at my problem-solving journey, contest ratings, platform statistics, and algorithmic practice.</p>
 
         <!-- SECTION: PROFILES CARDS -->
         <div class="section-divider" style="margin-top: 2rem;">
@@ -97,22 +98,22 @@
             </div>
 
             <div class="cp-stat-primary">
-              <span class="cp-stat-val">327+</span>
+              <span class="cp-stat-val" id="lc-total-solved">327+</span>
               <span class="cp-stat-desc">Problems Solved</span>
             </div>
 
             <div class="cp-stats-row">
               <div class="cp-stat-box">
                 <div class="cp-stat-box-label stat-easy">Easy</div>
-                <div class="cp-stat-box-val stat-easy">73</div>
+                <div class="cp-stat-box-val stat-easy" id="lc-easy-val">73</div>
               </div>
               <div class="cp-stat-box">
                 <div class="cp-stat-box-label stat-medium">Medium</div>
-                <div class="cp-stat-box-val stat-medium">182</div>
+                <div class="cp-stat-box-val stat-medium" id="lc-med-val">182</div>
               </div>
               <div class="cp-stat-box">
                 <div class="cp-stat-box-label stat-hard">Hard</div>
-                <div class="cp-stat-box-val stat-hard">72</div>
+                <div class="cp-stat-box-val stat-hard" id="lc-hard-val">72</div>
               </div>
             </div>
           </div>
@@ -131,22 +132,22 @@
             </div>
 
             <div class="cp-stat-primary">
-              <span class="cp-stat-val">1,438</span>
+              <span class="cp-stat-val" id="cf-rating-val">1,438</span>
               <span class="cp-stat-desc">Current Rating</span>
             </div>
 
             <div class="cp-stats-row">
               <div class="cp-stat-box">
                 <div class="cp-stat-box-label">Peak</div>
-                <div class="cp-stat-box-val stat-accent">1,446</div>
+                <div class="cp-stat-box-val stat-accent" id="cf-peak-val">1,446</div>
               </div>
               <div class="cp-stat-box">
                 <div class="cp-stat-box-label">Title</div>
-                <div class="cp-stat-box-val stat-accent">Specialist</div>
+                <div class="cp-stat-box-val stat-accent" id="cf-title-val">Specialist</div>
               </div>
               <div class="cp-stat-box">
                 <div class="cp-stat-box-label">Best Rank</div>
-                <div class="cp-stat-box-val stat-teal">#1,284</div>
+                <div class="cp-stat-box-val stat-teal" id="cf-rank-val">#1,284</div>
               </div>
             </div>
           </div>
@@ -199,26 +200,85 @@
             </div>
 
             <div class="cp-stat-primary">
-              <span class="cp-stat-val">1,829</span>
+              <span class="cp-stat-val" id="lc-contest-val">1,829</span>
               <span class="cp-stat-desc">Contest Rating</span>
             </div>
 
             <div class="cp-stats-row">
               <div class="cp-stat-box">
                 <div class="cp-stat-box-label">Peak</div>
-                <div class="cp-stat-box-val stat-mauve">1,829</div>
+                <div class="cp-stat-box-val stat-mauve" id="lc-contest-peak-val">1,829</div>
               </div>
               <div class="cp-stat-box">
                 <div class="cp-stat-box-label">Top %</div>
-                <div class="cp-stat-box-val stat-teal">7.2%</div>
+                <div class="cp-stat-box-val stat-teal" id="lc-contest-top-val">7.2%</div>
               </div>
               <div class="cp-stat-box">
                 <div class="cp-stat-box-label">Best Rank</div>
-                <div class="cp-stat-box-val stat-mauve">#1,225</div>
+                <div class="cp-stat-box-val stat-mauve" id="lc-contest-rank-val">#1,225</div>
               </div>
             </div>
           </div>
 
+        </div>
+
+        <!-- SECTION: SUBMISSION HEATMAP -->
+        <div class="section-divider" style="margin-top: 2.5rem;">
+          <span class="section-label">── submission heatmap</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="heatmap-card">
+          <div class="heatmap-header">
+            <div class="heatmap-title">
+              <svg class="heatmap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Submission Heatmap</span>
+            </div>
+
+            <div class="heatmap-controls-group">
+              <select id="heatmap-year-select" class="heatmap-year-dropdown" aria-label="Select year">
+                <option value="latest" selected>Last 12 Months</option>
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+              </select>
+
+              <div class="heatmap-filter-tabs" id="heatmap-platform-tabs">
+                <button class="heatmap-tab-btn active" data-platform="all">All Activity</button>
+                <button class="heatmap-tab-btn" data-platform="leetcode">LeetCode</button>
+                <button class="heatmap-tab-btn" data-platform="codeforces">Codeforces</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="heatmap-body">
+            <div class="heatmap-scroll-area">
+              <div id="heatmap-grid" class="heatmap-grid-container">
+                <!-- Heatmap matrix dynamically rendered via dsa.js -->
+              </div>
+            </div>
+            <div id="heatmap-tooltip" class="heatmap-tooltip hidden"></div>
+          </div>
+
+          <div class="heatmap-footer">
+            <div class="heatmap-total-stat">
+              <strong id="heatmap-total-count">771</strong> submissions in <span id="heatmap-selected-year">the last year</span>
+            </div>
+            <div class="heatmap-legend">
+              <span class="heatmap-legend-label">Less</span>
+              <span class="heatmap-cell legend-cell level-0"></span>
+              <span class="heatmap-cell legend-cell level-1"></span>
+              <span class="heatmap-cell legend-cell level-2"></span>
+              <span class="heatmap-cell legend-cell level-3"></span>
+              <span class="heatmap-cell legend-cell level-4"></span>
+              <span class="heatmap-legend-label">More</span>
+            </div>
+          </div>
         </div>
 
         <!-- NATURE PIXEL ART BANNER -->
@@ -248,6 +308,7 @@
   </footer>
 
   <script src="/static/js/theme.js"></script>
+  <script src="/static/js/dsa.js?v=16"></script>
 </body>
 
 </html>

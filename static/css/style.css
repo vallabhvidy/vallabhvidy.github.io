@@ -18,6 +18,8 @@
   --color-ctp-yellow: #df8e1d;
   --color-ctp-sapphire: #209fb5;
   --color-ctp-sky: #04a5e5;
+  --dropdown-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none' stroke='rgba(0,0,0,0.5)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.25L5 4.75L9 1.25'/%3E%3C/svg%3E");
+  --dropdown-chevron-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none' stroke='rgba(0,0,0,0.85)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.25L5 4.75L9 1.25'/%3E%3C/svg%3E");
 }
 
 html.dark {
@@ -37,6 +39,8 @@ html.dark {
   --color-ctp-yellow: #f9e2af;
   --color-ctp-sapphire: #74c7ec;
   --color-ctp-sky: #89dceb;
+  --dropdown-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.25L5 4.75L9 1.25'/%3E%3C/svg%3E");
+  --dropdown-chevron-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none' stroke='rgba(255,255,255,0.95)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.25L5 4.75L9 1.25'/%3E%3C/svg%3E");
 }
 
 /* ==================== THEME PALETTES ==================== */
@@ -965,22 +969,30 @@ footer {
 }
 
 .theme-dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   background-color: var(--color-ctp-bg-alt);
   color: var(--color-ctp-subtext);
   border: 1px solid var(--color-ctp-surface);
   border-radius: 0.375rem;
-  padding: 0 0.55rem;
+  padding: 0 1.85rem 0 0.65rem;
   height: 28px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   cursor: pointer;
   outline: none;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  transition: border-color 0.15s ease, color 0.15s ease, background-image 0.15s ease;
+  background-image: var(--dropdown-chevron);
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 9px 5px;
 }
 
 .theme-dropdown:hover, .theme-dropdown:focus {
   border-color: var(--color-ctp-accent);
   color: var(--color-ctp-text);
+  background-image: var(--dropdown-chevron-hover);
 }
 
 .theme-dropdown option {
@@ -1339,3 +1351,457 @@ footer {
 .achieve-card-hack { border-left: 3px solid var(--color-ctp-red); }
 .achieve-card-contest { border-left: 3px solid var(--color-ctp-mauve); }
 .achieve-card-academic { border-left: 3px solid var(--color-ctp-teal); }
+
+/* ==================== CARD RATIO BAR & PILL BADGES ==================== */
+
+.cp-ratio-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.15rem;
+}
+
+.cp-ratio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--color-ctp-muted);
+}
+
+.cp-ratio-title {
+  font-weight: 600;
+  color: var(--color-ctp-subtext);
+}
+
+.cp-ratio-breakdown {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: var(--color-ctp-text);
+  font-size: 0.72rem;
+}
+
+.cp-ratio-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-ctp-surface);
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+}
+
+.cp-ratio-seg {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.seg-easy { background-color: var(--color-ctp-green); }
+.seg-med { background-color: var(--color-ctp-yellow); }
+.seg-hard { background-color: var(--color-ctp-red); }
+.seg-accent { background-color: var(--color-ctp-accent); }
+
+.cp-pill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.15rem;
+}
+
+.cp-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  background-color: var(--color-ctp-bg);
+  border: 1px solid var(--color-ctp-surface);
+  color: var(--color-ctp-subtext);
+  font-variant-numeric: tabular-nums;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.cp-pill-badge:hover {
+  border-color: var(--color-ctp-accent);
+  color: var(--color-ctp-text);
+}
+
+.badge-streak {
+  border-color: color-mix(in srgb, var(--color-ctp-peach) 35%, var(--color-ctp-surface));
+  color: var(--color-ctp-peach);
+  background-color: color-mix(in srgb, var(--color-ctp-peach) 8%, transparent);
+}
+
+.badge-rank {
+  border-color: color-mix(in srgb, var(--color-ctp-teal) 35%, var(--color-ctp-surface));
+  color: var(--color-ctp-teal);
+  background-color: color-mix(in srgb, var(--color-ctp-teal) 8%, transparent);
+}
+
+.badge-contests {
+  border-color: color-mix(in srgb, var(--color-ctp-mauve) 35%, var(--color-ctp-surface));
+  color: var(--color-ctp-mauve);
+  background-color: color-mix(in srgb, var(--color-ctp-mauve) 8%, transparent);
+}
+
+.badge-location {
+  border-color: var(--color-ctp-surface);
+  color: var(--color-ctp-subtext);
+}
+
+/* ==================== SUBMISSION HEATMAP WIDGET ==================== */
+
+.heatmap-card {
+  background-color: var(--color-ctp-bg-alt);
+  border: 1px solid var(--color-ctp-surface);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.heatmap-card:hover {
+  border-color: var(--color-ctp-teal);
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--color-ctp-teal) 10%, transparent);
+}
+
+.heatmap-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.heatmap-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.heatmap-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-ctp-text);
+}
+
+.heatmap-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--color-ctp-teal);
+  flex-shrink: 0;
+}
+
+.heatmap-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.heatmap-year-dropdown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--color-ctp-bg);
+  color: var(--color-ctp-text);
+  border: 1px solid var(--color-ctp-surface);
+  border-radius: 9999px;
+  padding: 0 2.15rem 0 0.85rem;
+  height: 28px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease, color 0.15s ease, background-image 0.15s ease;
+  background-image: var(--dropdown-chevron);
+  background-repeat: no-repeat;
+  background-position: right 0.95rem center;
+  background-size: 9px 5px;
+}
+
+.heatmap-year-dropdown:hover,
+.heatmap-year-dropdown:focus {
+  border-color: var(--color-ctp-accent);
+  color: var(--color-ctp-accent);
+  background-image: var(--dropdown-chevron-hover);
+}
+
+.heatmap-year-dropdown option {
+  background-color: var(--color-ctp-bg-alt);
+  color: var(--color-ctp-text);
+}
+
+.heatmap-filter-tabs {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 9999px;
+  background-color: var(--color-ctp-bg);
+  border: 1px solid var(--color-ctp-surface);
+  gap: 2px;
+}
+
+.heatmap-tab-btn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  color: var(--color-ctp-subtext);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.heatmap-tab-btn:hover {
+  color: var(--color-ctp-text);
+}
+
+.heatmap-tab-btn.active {
+  background-color: var(--color-ctp-text);
+  color: var(--color-ctp-bg);
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Heatmap Body & Calendar Grid */
+.heatmap-body {
+  position: relative;
+}
+
+.heatmap-scroll-area {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.5rem;
+  padding-top: 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ctp-surface) transparent;
+}
+
+.heatmap-scroll-area::-webkit-scrollbar {
+  height: 4px;
+}
+.heatmap-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+.heatmap-scroll-area::-webkit-scrollbar-thumb {
+  background: var(--color-ctp-surface);
+  border-radius: 2px;
+}
+.heatmap-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ctp-subtext);
+}
+
+.heatmap-grid-container {
+  width: 100%;
+}
+
+.heatmap-table {
+  width: 100%;
+  min-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.heatmap-months-row {
+  display: flex;
+  align-items: center;
+  height: 16px;
+  width: 100%;
+}
+
+.heatmap-weekday-spacer {
+  width: 26px;
+  flex-shrink: 0;
+}
+
+.heatmap-months-container {
+  position: relative;
+  height: 16px;
+  flex: 1;
+}
+
+.heatmap-month-label {
+  position: absolute;
+  top: 0;
+  font-size: 0.68rem;
+  color: var(--color-ctp-muted);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.heatmap-days-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+}
+
+.heatmap-weekdays-col {
+  width: 26px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.65rem;
+  color: var(--color-ctp-muted);
+  user-select: none;
+}
+
+.heatmap-weekdays-col span {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.heatmap-weeks-grid {
+  flex: 1;
+  display: flex;
+  gap: 3px;
+  min-width: 0;
+}
+
+.heatmap-week-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.heatmap-cell {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 2.5px;
+  background-color: var(--color-ctp-surface);
+  transition: outline 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.heatmap-cell:hover {
+  z-index: 10;
+  outline: 2px solid var(--color-ctp-accent);
+  outline-offset: -1px;
+  box-shadow: 0 0 6px var(--color-ctp-accent);
+  filter: brightness(1.25);
+}
+
+.heatmap-cell.level-0 {
+  background-color: var(--color-ctp-surface);
+  opacity: 0.35;
+}
+
+.heatmap-cell.level-1 {
+  background-color: color-mix(in srgb, var(--color-ctp-teal) 45%, var(--color-ctp-surface));
+}
+
+.heatmap-cell.level-2 {
+  background-color: color-mix(in srgb, var(--color-ctp-teal) 75%, var(--color-ctp-surface));
+}
+
+.heatmap-cell.level-3 {
+  background-color: var(--color-ctp-teal);
+}
+
+.heatmap-cell.level-4 {
+  background-color: var(--color-ctp-green);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--color-ctp-green) 70%, transparent);
+}
+
+.heatmap-cell.cell-future {
+  background-color: var(--color-ctp-surface);
+  opacity: 0.15;
+  cursor: default;
+  pointer-events: none;
+}
+
+.heatmap-cell.cell-empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Tooltip */
+.heatmap-tooltip {
+  position: absolute;
+  pointer-events: none;
+  z-index: 50;
+  background-color: var(--color-ctp-bg);
+  color: var(--color-ctp-text);
+  border: 1px solid var(--color-ctp-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  padding: 0.4rem 0.65rem;
+  border-radius: 0.35rem;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  line-height: 1.4;
+  white-space: nowrap;
+  transform: translate(-50%, -125%);
+  transition: opacity 0.1s ease;
+}
+
+.heatmap-tooltip.hidden {
+  display: none !important;
+}
+
+/* Heatmap Footer */
+.heatmap-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--color-ctp-muted);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--color-ctp-surface);
+}
+
+.heatmap-total-stat {
+  font-size: 0.72rem;
+  color: var(--color-ctp-muted);
+}
+
+.heatmap-total-stat strong {
+  color: var(--color-ctp-text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.heatmap-legend-label {
+  font-size: 0.68rem;
+  color: var(--color-ctp-muted);
+}
+
+.legend-cell {
+  width: 11px !important;
+  height: 11px !important;
+  aspect-ratio: 1 / 1;
+  flex: none;
+  cursor: default;
+}
+.legend-cell:hover {
+  transform: none;
+  outline: none;
+}
+
