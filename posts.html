@@ -72,41 +72,31 @@
       <h1 class="page-title">~/posts/</h1>
       <div class="page-divider"></div>
 
-      <div class="filter-bar" id="post-filters">
-        <button class="filter-btn active" data-filter="all">all</button>
-        <button class="filter-btn" data-filter="systems">systems</button>
-        <button class="filter-btn" data-filter="c++">c++</button>
-        <button class="filter-btn" data-filter="linux">linux</button>
-      </div>
-
       <div id="posts-list">
-        <article class="post-card" data-tags="systems">
+        <article class="post-card">
           <div class="post-header-line">
             <time class="recent-time">2026-08-20</time>
             <a href="/posts/zenza/" class="post-title-link">Zenza: Distributed Code Benchmarking Platform</a>
-            <span class="tag-badge tag-teal">systems</span>
           </div>
           <p class="post-desc">
             Architecting an asynchronous distributed benchmarking engine with FastAPI, Redis queues, and secure container sandboxing.
           </p>
         </article>
 
-        <article class="post-card" data-tags="c++">
+        <article class="post-card">
           <div class="post-header-line">
             <time class="recent-time">2026-05-14</time>
             <a href="/posts/micrograd-cpp/" class="post-title-link">micrograd-cpp: Dynamic Autograd Engine in C++</a>
-            <span class="tag-badge tag-mauve">c++</span>
           </div>
           <p class="post-desc">
             Reimplementing Andrej Karpathy's autograd engine in modern C++ with dynamic DAG construction, reverse-mode backpropagation, and smart pointers.
           </p>
         </article>
 
-        <article class="post-card" data-tags="linux">
+        <article class="post-card">
           <div class="post-header-line">
             <time class="recent-time">2026-02-08</time>
             <a href="/posts/cubetimer/" class="post-title-link">CubeTimer: Building a GTK4 Solves Manager for Flathub</a>
-            <span class="tag-badge tag-green">linux</span>
           </div>
           <p class="post-desc">
             Developing a native GNOME desktop application for speedcubers using GTK4, LibAdwaita, and SQLite, reaching 2,900+ active users.
@@ -129,23 +119,6 @@
   </footer>
 
   <script src="/static/js/theme.js"></script>
-  <script>
-    document.querySelectorAll('#post-filters .filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#post-filters .filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.getAttribute('data-filter');
-        document.querySelectorAll('#posts-list .post-card').forEach(card => {
-          if (filter === 'all' || card.getAttribute('data-tags') === filter) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-  </script>
-  
 </body>
 
 </html>
