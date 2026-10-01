@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>~/dsa.md</title>
+  <meta name="description"
+    content="Competitive programming ratings, problem-solving stats, and platform profiles of Vallabh Vidyasagar." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css?v=8" />
+  <link rel="alternate" type="application/rss+xml" title="Vallabh Vidyasagar" href="/feed.xml" />
+
+  <script>
+    (function () {
+      const mode = localStorage.getItem('theme') || 'dark';
+      const palette = localStorage.getItem('theme-palette') || 'catppuccin';
+      if (mode === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+      document.documentElement.setAttribute('data-theme', palette);
+      document.documentElement.setAttribute('data-mode', mode);
+    })();
+  </script>
+  <link rel="icon" type="image/svg+xml" href="/static/img/avataaars.svg" />
+  <link rel="alternate icon" type="image/png" href="/static/img/favicon.png" />
+  <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png" />
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav-container">
+      <div class="nav-links">
+        <a href="/" class="nav-link inactive">~/</a>
+        <a href="/posts/" class="nav-link inactive">~/posts/</a>
+        <a href="/projects/" class="nav-link inactive">~/projects.md</a>
+        <a href="/dsa/" class="nav-link active">~/dsa.md</a>
+        <a href="/about/" class="nav-link inactive">~/about.md</a>
+      </div>
+
+      <div class="theme-controls">
+        <select id="theme-selector" onchange="changeThemePalette(this.value)" aria-label="Select color palette" class="theme-dropdown">
+          <option value="catppuccin">catppuccin</option>
+          <option value="gruvbox">gruvbox</option>
+          <option value="dracula">dracula</option>
+          <option value="nord">nord</option>
+          <option value="tokyo-night">tokyo night</option>
+        </select>
+
+        <button onclick="toggleTheme()" aria-label="Toggle dark/light mode" class="theme-toggle-btn">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="icon hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M3 12H1m22 0h-2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M12 7a5 5 0 100 10A5 5 0 0012 7z" />
+          </svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="animate-page">
+    <div>
+      <h1 class="page-title">~/dsa.md</h1>
+      <div class="page-divider"></div>
+
+      <div class="prose">
+        <h1>Competitive Programming and DSA</h1>
+
+        <!-- SECTION: PROFILES CARDS -->
+        <div class="section-divider" style="margin-top: 2rem;">
+          <span class="section-label">── profiles & platforms</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="cp-grid cp-grid-2">
+
+          <!-- LeetCode Card -->
+          <div class="cp-card cp-card-leetcode">
+            <div class="cp-card-header">
+              <div class="cp-platform">
+                <div class="cp-platform-icon">&lt;/&gt;</div>
+                <div>
+                  <div class="cp-platform-name">LeetCode</div>
+                  <div class="cp-handle">@vallabhvidy</div>
+                </div>
+              </div>
+              <a href="https://leetcode.com/u/vallabhvidy/" target="_blank" rel="noreferrer" class="cp-ext-link">Profile ↗</a>
+            </div>
+
+            <div class="cp-stat-primary">
+              <span class="cp-stat-val">327+</span>
+              <span class="cp-stat-desc">Problems Solved</span>
+            </div>
+
+            <div class="cp-stats-row">
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label stat-easy">Easy</div>
+                <div class="cp-stat-box-val stat-easy">73</div>
+              </div>
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label stat-medium">Medium</div>
+                <div class="cp-stat-box-val stat-medium">182</div>
+              </div>
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label stat-hard">Hard</div>
+                <div class="cp-stat-box-val stat-hard">72</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Codeforces Card -->
+          <div class="cp-card cp-card-codeforces">
+            <div class="cp-card-header">
+              <div class="cp-platform">
+                <div class="cp-platform-icon">CF</div>
+                <div>
+                  <div class="cp-platform-name">Codeforces</div>
+                  <div class="cp-handle">@vallabhvidy</div>
+                </div>
+              </div>
+              <a href="https://codeforces.com/profile/vallabhvidy" target="_blank" rel="noreferrer" class="cp-ext-link">Profile ↗</a>
+            </div>
+
+            <div class="cp-stat-primary">
+              <span class="cp-stat-val">1,438</span>
+              <span class="cp-stat-desc">Current Rating</span>
+            </div>
+
+            <div class="cp-stats-row">
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label">Peak</div>
+                <div class="cp-stat-box-val stat-accent">1,446</div>
+              </div>
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label">Title</div>
+                <div class="cp-stat-box-val stat-accent">Specialist</div>
+              </div>
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label">Best Rank</div>
+                <div class="cp-stat-box-val stat-teal">#1,284</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CodeChef Card -->
+          <div class="cp-card cp-card-codechef">
+            <div class="cp-card-header">
+              <div class="cp-platform">
+                <div class="cp-platform-icon">CC</div>
+                <div>
+                  <div class="cp-platform-name">CodeChef</div>
+                  <div class="cp-handle">@vallabhvidy</div>
+                </div>
+              </div>
+              <a href="https://www.codechef.com/users/vallabhvidy" target="_blank" rel="noreferrer" class="cp-ext-link">Profile ↗</a>
+            </div>
+
+            <div class="cp-stat-primary">
+              <span class="cp-stat-val">1,667</span>
+              <span class="cp-stat-desc">Current Rating</span>
+            </div>
+
+            <div class="cp-stats-row">
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label">Peak</div>
+                <div class="cp-stat-box-val stat-peach">1,667</div>
+              </div>
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label">Stars</div>
+                <div class="cp-stat-box-val stat-peach">3★</div>
+              </div>
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label">Best Rank</div>
+                <div class="cp-stat-box-val stat-green">#35</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LeetCode Contests Card -->
+          <div class="cp-card cp-card-lc-contest">
+            <div class="cp-card-header">
+              <div class="cp-platform">
+                <div class="cp-platform-icon">LC</div>
+                <div>
+                  <div class="cp-platform-name">LeetCode Contests</div>
+                  <div class="cp-handle">@vallabhvidy</div>
+                </div>
+              </div>
+              <a href="https://leetcode.com/u/vallabhvidy/" target="_blank" rel="noreferrer" class="cp-ext-link">Profile ↗</a>
+            </div>
+
+            <div class="cp-stat-primary">
+              <span class="cp-stat-val">1,829</span>
+              <span class="cp-stat-desc">Contest Rating</span>
+            </div>
+
+            <div class="cp-stats-row">
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label">Peak</div>
+                <div class="cp-stat-box-val stat-mauve">1,829</div>
+              </div>
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label">Top %</div>
+                <div class="cp-stat-box-val stat-teal">7.2%</div>
+              </div>
+              <div class="cp-stat-box">
+                <div class="cp-stat-box-label">Best Rank</div>
+                <div class="cp-stat-box-val stat-mauve">#1,225</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- NATURE PIXEL ART BANNER -->
+        <div class="section-divider" style="margin-top: 2.5rem;">
+          <span class="section-label">── sanctuary</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="pixel-frame" style="margin-top: 1rem; margin-bottom: 2rem;">
+          <img src="/static/img/japan.gif" alt="Pixel art nature landscape" class="pixel-art-img" />
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <span>© 2026 Vallabh Vidyasagar</span>
+      <div class="footer-links">
+        <a href="https://github.com/vallabhvidy" target="_blank" rel="noreferrer">github</a>
+        <a href="https://linkedin.com/in/vallabhvidy" target="_blank" rel="noreferrer">linkedin</a>
+        <a href="mailto:vallabhvidy10@gmail.com">email</a>
+        <a href="/feed.xml">rss</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/js/theme.js"></script>
+</body>
+
+</html>
