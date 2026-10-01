@@ -415,31 +415,10 @@
             // Tooltip interactions
             cell.addEventListener('mouseenter', function () {
               if (!tooltip) return;
-              const dt = new Date(dateStr + 'T00:00:00Z');
-              const dateFormatted = dt.toLocaleDateString('en-US', {
-                weekday: 'short',
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-                timeZone: 'UTC'
-              });
+              const count = info.count || 0;
+              const text = count === 1 ? '1 submission' : `${count} submissions`;
 
-              let text = '';
-              if (info.count === 0) {
-                text = `No submissions on ${dateFormatted}`;
-              } else if (info.count === 1) {
-                text = `<strong>1 submission</strong> on ${dateFormatted}`;
-                if (currentPlatform === 'all') {
-                  text += ` <span style="opacity:0.75">(LC: ${info.lcCount}, CF: ${info.cfCount})</span>`;
-                }
-              } else {
-                text = `<strong>${info.count} submissions</strong> on ${dateFormatted}`;
-                if (currentPlatform === 'all') {
-                  text += ` <span style="opacity:0.75">(LC: ${info.lcCount}, CF: ${info.cfCount})</span>`;
-                }
-              }
-
-              tooltip.innerHTML = text;
+              tooltip.textContent = text;
               tooltip.classList.remove('hidden');
 
               const rect = cell.getBoundingClientRect();
@@ -448,10 +427,10 @@
               const top = rect.top - wrapperRect.top;
 
               // Keep tooltip within card bounds near edges
-              if (w >= totalWeeks - 8) {
-                tooltip.style.transform = 'translate(-92%, -130%)';
-              } else if (w < 4) {
-                tooltip.style.transform = 'translate(-8%, -130%)';
+              if (w >= totalWeeks - 4) {
+                tooltip.style.transform = 'translate(-85%, -130%)';
+              } else if (w < 3) {
+                tooltip.style.transform = 'translate(-15%, -130%)';
               } else {
                 tooltip.style.transform = 'translate(-50%, -130%)';
               }
