@@ -836,7 +836,7 @@ html.dark .filter-btn.active {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-page, .animate-item, .cursor-blink:after {
+  .animate-page, .animate-item, .cursor-blink:after, .cp-grid > .cp-card {
     animation: none;
   }
 }
@@ -870,6 +870,10 @@ footer {
 .footer-links {
   display: flex;
   gap: 1rem;
+}
+
+.footer-links a {
+  transition: color 0.15s ease;
 }
 
 .footer-links a:hover {
@@ -1007,18 +1011,16 @@ footer {
   background-color: var(--color-ctp-bg-alt);
   border: 1px solid var(--color-ctp-surface);
   border-radius: 0.5rem;
-  padding: 1.25rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.15rem;
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
 }
 
 .cp-card:hover {
-  border-color: var(--color-ctp-accent);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .cp-card-header {
@@ -1077,6 +1079,7 @@ footer {
 .cp-ext-link:hover {
   color: var(--color-ctp-accent);
   border-color: var(--color-ctp-accent);
+  background-color: color-mix(in srgb, var(--color-ctp-accent) 8%, transparent);
   text-decoration: none;
 }
 
@@ -1093,6 +1096,7 @@ footer {
   line-height: 1.1;
   color: var(--color-ctp-text);
   letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
 
 .cp-stat-desc {
@@ -1110,7 +1114,7 @@ footer {
   background-color: var(--color-ctp-bg);
   border: 1px solid var(--color-ctp-surface);
   border-radius: 0.375rem;
-  padding: 0.5rem 0.65rem;
+  padding: 0.6rem 0.75rem;
   text-align: center;
   min-width: 0;
 }
@@ -1130,6 +1134,10 @@ footer {
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-ctp-text);
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cp-progress-bar {
@@ -1295,6 +1303,34 @@ footer {
 .stat-peach { color: var(--color-ctp-peach) !important; }
 .stat-mauve { color: var(--color-ctp-mauve) !important; }
 .stat-teal { color: var(--color-ctp-teal) !important; }
+
+/* Per-Card Accent Hover Glows */
+.cp-card-leetcode:hover {
+  border-color: var(--color-ctp-yellow);
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--color-ctp-yellow) 12%, transparent);
+}
+.cp-card-codeforces:hover {
+  border-color: var(--color-ctp-accent);
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--color-ctp-accent) 12%, transparent);
+}
+.cp-card-codechef:hover {
+  border-color: var(--color-ctp-peach);
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--color-ctp-peach) 12%, transparent);
+}
+.cp-card-summary:hover,
+.cp-card-lc-contest:hover {
+  border-color: var(--color-ctp-mauve);
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--color-ctp-mauve) 12%, transparent);
+}
+
+/* Staggered Card Entrance */
+.cp-grid > .cp-card {
+  animation: fade-up 0.3s ease both;
+}
+.cp-grid > .cp-card:nth-child(1) { animation-delay: 0.06s; }
+.cp-grid > .cp-card:nth-child(2) { animation-delay: 0.12s; }
+.cp-grid > .cp-card:nth-child(3) { animation-delay: 0.18s; }
+.cp-grid > .cp-card:nth-child(4) { animation-delay: 0.24s; }
 
 /* Achievement Card Top Accents */
 .achieve-card-cf { border-left: 3px solid var(--color-ctp-accent); }
