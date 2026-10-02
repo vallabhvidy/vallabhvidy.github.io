@@ -333,6 +333,71 @@ header {
   color: var(--color-ctp-text);
 }
 
+/* Hamburger Menu Button (mobile only) */
+.nav-hamburger {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  height: 28px;
+  width: 28px;
+  padding: 0;
+  border: 1px solid var(--color-ctp-surface);
+  background-color: var(--color-ctp-bg-alt);
+  color: var(--color-ctp-subtext);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nav-hamburger:hover {
+  border-color: var(--color-ctp-accent);
+  color: var(--color-ctp-text);
+}
+
+.nav-hamburger .hamburger-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+@media (max-width: 639px) {
+  .nav-hamburger {
+    display: inline-flex;
+  }
+
+  .nav-container {
+    position: relative;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--color-ctp-bg);
+    border-bottom: 1px solid var(--color-ctp-surface);
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  html.dark .nav-links {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 0.35rem 0;
+    font-size: 0.9rem;
+  }
+}
+
 .icon {
   width: 0.875rem;
   height: 0.875rem;
@@ -1817,5 +1882,310 @@ footer {
 .legend-cell:hover {
   transform: none;
   outline: none;
+}
+
+/* ==================== RESPONSIVE: TABLETS (≤768px) ==================== */
+@media (max-width: 768px) {
+  main {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .cp-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cp-stat-val {
+    font-size: 1.5rem;
+  }
+
+  .cp-card {
+    padding: 1.25rem;
+  }
+
+  .heatmap-card {
+    padding: 1.25rem;
+  }
+
+  .heatmap-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .quote-banner {
+    padding: 1rem 1.25rem;
+  }
+
+  .quote-text {
+    font-size: 1rem;
+  }
+
+  .prose pre {
+    font-size: 0.8rem;
+    padding: 0.75rem;
+  }
+
+  .about-avatar {
+    width: 120px !important;
+    height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+  }
+}
+
+/* ==================== RESPONSIVE: PHONES (≤480px) ==================== */
+@media (max-width: 480px) {
+  main {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .nav-container {
+    padding: 0.75rem 0.75rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .page-title {
+    font-size: 1.25rem;
+  }
+
+  /* Cards go full-width single column */
+  .cp-grid-2,
+  .cp-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-card {
+    padding: 1rem;
+    gap: 0.85rem;
+  }
+
+  .cp-stat-val {
+    font-size: 1.35rem;
+  }
+
+  .cp-stat-box-val {
+    font-size: 1rem;
+  }
+
+  .cp-stat-box {
+    padding: 0.45rem 0.5rem;
+  }
+
+  .cp-stat-box-label {
+    font-size: 0.65rem;
+  }
+
+  .cp-card-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .cp-platform-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+
+  .cp-platform-name {
+    font-size: 0.85rem;
+  }
+
+  /* Heatmap adjustments */
+  .heatmap-card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .heatmap-title {
+    font-size: 0.9rem;
+  }
+
+  .heatmap-controls-group {
+    width: 100%;
+  }
+
+  .heatmap-filter-tabs {
+    flex-wrap: wrap;
+  }
+
+  .heatmap-tab-btn {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.55rem;
+  }
+
+  .heatmap-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  /* Quote banner */
+  .quote-banner {
+    padding: 0.85rem 1rem;
+    margin: 1.75rem 0 1.25rem 0;
+  }
+
+  .quote-text {
+    font-size: 0.9rem;
+  }
+
+  .quote-sub {
+    font-size: 0.72rem;
+  }
+
+  /* Prose */
+  .prose {
+    font-size: 0.8125rem;
+  }
+
+  .prose h1 {
+    font-size: 1.25rem;
+  }
+
+  .prose h2 {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+  }
+
+  .prose h3 {
+    font-size: 0.9rem;
+  }
+
+  .prose pre {
+    font-size: 0.75rem;
+    padding: 0.65rem;
+    border-radius: 0.375rem;
+  }
+
+  .prose blockquote {
+    padding-left: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Tables */
+  th, td {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  td:first-child {
+    width: auto;
+    min-width: 5rem;
+  }
+
+  /* Achievement cards */
+  .achieve-card {
+    padding: 0.9rem;
+    gap: 0.5rem;
+  }
+
+  .achieve-title {
+    font-size: 0.85rem;
+  }
+
+  .achieve-desc {
+    font-size: 0.75rem;
+  }
+
+  /* Pill badges */
+  .cp-pill-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  /* Section dividers */
+  .section-divider {
+    margin-top: 1.75rem;
+  }
+
+  /* Recent list */
+  .recent-item {
+    font-size: 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .recent-time {
+    font-size: 0.7rem;
+  }
+
+  /* Footer */
+  .footer-container {
+    padding: 1rem 0.75rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* About avatar */
+  .about-avatar {
+    width: 110px !important;
+    height: 110px !important;
+    max-width: 110px !important;
+    max-height: 110px !important;
+  }
+
+  .about-header-flex {
+    gap: 1rem;
+  }
+
+  /* Filter bar */
+  .filter-bar {
+    gap: 0.35rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .filter-btn {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.45rem;
+  }
+
+  /* Post cards */
+  .post-header-line {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .post-title-link {
+    font-size: 0.85rem;
+  }
+
+  .post-desc {
+    font-size: 0.8rem;
+  }
+
+  /* Pixel frame */
+  .pixel-frame {
+    border-radius: 0.375rem;
+  }
+
+  /* Tree */
+  .tree-list {
+    font-size: 0.85rem;
+  }
+
+  /* Theme dropdown - slightly smaller */
+  .theme-dropdown {
+    font-size: 0.65rem;
+    height: 26px;
+    padding: 0 1.5rem 0 0.5rem;
+    background-position: right 0.55rem center;
+  }
 }
 

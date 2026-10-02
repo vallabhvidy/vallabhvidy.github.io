@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="/static/css/style.css?v=19" />
+  <link rel="stylesheet" href="/static/css/style.css?v=20" />
   <link rel="alternate" type="application/rss+xml" title="Vallabh Vidyasagar" href="/feed.xml" />
 
   <script>
@@ -38,6 +38,11 @@
 
   <header>
     <nav class="nav-container">
+      <button onclick="toggleMobileNav()" aria-label="Toggle navigation menu" class="nav-hamburger">
+        <svg xmlns="http://www.w3.org/2000/svg" class="hamburger-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
       <div class="nav-links">
         <a href="/" class="nav-link active">~/</a>
         <a href="/posts/" class="nav-link inactive">~/posts/</a>
