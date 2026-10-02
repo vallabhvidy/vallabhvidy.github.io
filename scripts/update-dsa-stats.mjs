@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DATA_PATH = path.resolve(__dirname, '../static/data/dsa-stats.json');
+const GH_DATA_PATH = path.resolve(__dirname, '../static/data/github-stats.json');
 
 const CF_HANDLE = 'vallabhvidy';
 const LC_HANDLE = 'vallabhvidy';
@@ -308,7 +309,20 @@ async function updateStats() {
     console.warn('⚠️ CodeChef fetch failed:', err.message);
   }
 
-  // 4. Write back to dsa-stats.json
+  // 4. GitHub contributions
+  try {
+    console.log('Fetching GitHub contributions...');
+    const ghData = await fetchJSON('https://github-contributions-api.jogruber.de/v4/vallabhvidy');
+    if (ghData && ghData.contributions) {
+      fs.mkdirSync(path.dirname(GH_DATA_PATH), { recursive: true });
+      fs.writeFileSync(GH_DATA_PATH, JSON.stringify(ghData, null, 2) + '\n', 'utf-8');
+      console.log(`🎉 Successfully updated ${GH_DATA_PATH}`);
+    }
+  } catch (err) {
+    console.warn('⚠️ GitHub fetch failed:', err.message);
+  }
+
+  // 5. Write back to dsa-stats.json
   if (cfUpdated || lcUpdated || ccUpdated) {
     data.updatedAt = new Date().toISOString();
     fs.mkdirSync(path.dirname(DATA_PATH), { recursive: true });

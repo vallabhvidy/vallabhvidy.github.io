@@ -51,4 +51,4 @@ date: 2026-05-14
   <li><code>MLP(nin, nouts)</code>: Multi-layer perceptron stacking sequential layers with support for forward passes, parameter collection, and zero-grad resets.</li>
 </ul>
 
-<p>The code is open source on <a href="https://github.com/vallabhvidy" target="_blank" rel="noreferrer">GitHub</a>.</p>
+<p>The code is open source on <a href="https://github.com/vallabhvidy/micrograd-cpp" target="_blank" rel="noreferrer">GitHub</a>.</p>

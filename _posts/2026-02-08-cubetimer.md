@@ -24,4 +24,4 @@ date: 2026-02-08
   <li>Flatpak sandboxing with strict file permissions and zero background telemetry.</li>
 </ul>
 
-<p>Available on <a href="https://flathub.org" target="_blank" rel="noreferrer">Flathub</a> and open source on <a href="https://github.com/vallabhvidy" target="_blank" rel="noreferrer">GitHub</a>.</p>
+<p>Available on <a href="https://flathub.org/en/apps/io.github.vallabhvidy.CubeTimer" target="_blank" rel="noreferrer">Flathub</a> and open source on <a href="https://github.com/vallabhvidy/CubeTimer" target="_blank" rel="noreferrer">GitHub</a>.</p>

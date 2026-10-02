@@ -672,6 +672,31 @@ html.dark .tag-sky {
   color: var(--color-ctp-teal);
 }
 
+.project-header-h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.project-github-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-ctp-muted);
+  text-decoration: none !important;
+  transition: color 0.15s ease, transform 0.15s ease;
+  vertical-align: middle;
+}
+
+.project-github-link:hover {
+  color: var(--color-ctp-accent);
+  transform: translateY(-1px);
+}
+
+.project-github-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
 .prose h3 {
   font-size: 1rem;
   font-weight: 600;
