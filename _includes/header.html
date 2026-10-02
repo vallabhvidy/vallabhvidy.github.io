@@ -1,0 +1,35 @@
+  <header>
+    <nav class="nav-container">
+      <button onclick="toggleMobileNav()" aria-label="Toggle navigation menu" class="nav-hamburger">
+        <svg xmlns="http://www.w3.org/2000/svg" class="hamburger-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a href="/" class="nav-link {% if page.nav == 'home' %}active{% else %}inactive{% endif %}">~/</a>
+        <a href="/posts/" class="nav-link {% if page.nav == 'posts' %}active{% else %}inactive{% endif %}">~/posts/</a>
+        <a href="/projects/" class="nav-link {% if page.nav == 'projects' %}active{% else %}inactive{% endif %}">~/projects.md</a>
+        <a href="/dsa/" class="nav-link {% if page.nav == 'dsa' %}active{% else %}inactive{% endif %}">~/dsa.md</a>
+        <a href="/about/" class="nav-link {% if page.nav == 'about' %}active{% else %}inactive{% endif %}">~/about.md</a>
+      </div>
+
+      <div class="theme-controls">
+        <select id="theme-selector" onchange="changeThemePalette(this.value)" aria-label="Select color palette" class="theme-dropdown">
+          <option value="catppuccin">catppuccin</option>
+          <option value="gruvbox">gruvbox</option>
+          <option value="dracula">dracula</option>
+          <option value="nord">nord</option>
+          <option value="tokyo-night">tokyo night</option>
+        </select>
+
+        <button onclick="toggleTheme()" aria-label="Toggle dark/light mode" class="theme-toggle-btn">
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="icon hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M3 12H1m22 0h-2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M12 7a5 5 0 100 10A5 5 0 0012 7z" />
+          </svg>
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
