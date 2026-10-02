@@ -673,9 +673,11 @@ html.dark .tag-sky {
 }
 
 .project-header-h2 {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.55rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
 .project-github-link {
@@ -718,8 +720,13 @@ html.dark .tag-sky {
 .prose hr {
   border: 0;
   border-top: 1px solid var(--color-ctp-border);
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose hr + h2,
+.prose hr + .project-header-h2 {
+  margin-top: 0;
 }
 
 .prose a {
