@@ -729,6 +729,23 @@ html.dark .tag-sky {
   margin-top: 0;
 }
 
+.prose img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-ctp-surface);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prose img:hover {
+  border-color: var(--color-ctp-border);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+
 .prose a {
   color: var(--color-ctp-accent);
   text-decoration: underline;
