@@ -1588,7 +1588,9 @@ footer {
   flex-wrap: wrap;
 }
 
-.heatmap-year-dropdown {
+.heatmap-dropdown,
+.heatmap-year-dropdown,
+.heatmap-platform-dropdown {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -1609,14 +1611,20 @@ footer {
   background-size: 9px 5px;
 }
 
+.heatmap-dropdown:hover,
+.heatmap-dropdown:focus,
 .heatmap-year-dropdown:hover,
-.heatmap-year-dropdown:focus {
+.heatmap-year-dropdown:focus,
+.heatmap-platform-dropdown:hover,
+.heatmap-platform-dropdown:focus {
   border-color: var(--color-ctp-accent);
   color: var(--color-ctp-accent);
   background-image: var(--dropdown-chevron-hover);
 }
 
-.heatmap-year-dropdown option {
+.heatmap-dropdown option,
+.heatmap-year-dropdown option,
+.heatmap-platform-dropdown option {
   background-color: var(--color-ctp-bg-alt);
   color: var(--color-ctp-text);
 }

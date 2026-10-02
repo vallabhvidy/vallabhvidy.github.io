@@ -4,7 +4,7 @@ title: "~/dsa.md"
 description: "Competitive programming ratings, problem-solving stats, and platform profiles of Vallabh Vidyasagar."
 nav: dsa
 permalink: /dsa/
-extra_script: /static/js/dsa.js?v=17
+extra_script: /static/js/dsa.js?v=18
 ---
     <div>
       <h1 class="page-title">~/dsa.md</h1>
@@ -183,18 +183,18 @@ extra_script: /static/js/dsa.js?v=17
             </div>
 
             <div class="heatmap-controls-group">
-              <select id="heatmap-year-select" class="heatmap-year-dropdown" aria-label="Select year">
+              <select id="heatmap-year-select" class="heatmap-dropdown heatmap-year-dropdown" aria-label="Select year">
                 <option value="latest" selected>Last 12 Months</option>
                 <option value="2026">2026</option>
                 <option value="2025">2025</option>
                 <option value="2024">2024</option>
               </select>
 
-              <div class="heatmap-filter-tabs" id="heatmap-platform-tabs">
-                <button class="heatmap-tab-btn active" data-platform="all">All Activity</button>
-                <button class="heatmap-tab-btn" data-platform="leetcode">LeetCode</button>
-                <button class="heatmap-tab-btn" data-platform="codeforces">Codeforces</button>
-              </div>
+              <select id="heatmap-platform-select" class="heatmap-dropdown heatmap-platform-dropdown" aria-label="Select platform">
+                <option value="all" selected>All Activity</option>
+                <option value="leetcode">LeetCode</option>
+                <option value="codeforces">Codeforces</option>
+              </select>
             </div>
           </div>
 

@@ -202,16 +202,30 @@
 
   // Setup tab click and dropdown handlers
   function setupEventListeners() {
-    // Platform tabs
-    const platformTabs = document.querySelectorAll('#heatmap-platform-tabs .heatmap-tab-btn');
-    platformTabs.forEach(btn => {
-      btn.addEventListener('click', function () {
-        platformTabs.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        currentPlatform = this.getAttribute('data-platform');
+    // Platform dropdown
+    const platformSelect = document.getElementById('heatmap-platform-select');
+    if (platformSelect) {
+      if (platformSelect.value) {
+        currentPlatform = platformSelect.value;
+      }
+      platformSelect.addEventListener('change', function () {
+        currentPlatform = this.value;
         renderHeatmap();
       });
-    });
+    }
+
+    // Platform tabs (fallback support)
+    const platformTabs = document.querySelectorAll('#heatmap-platform-tabs .heatmap-tab-btn');
+    if (platformTabs.length) {
+      platformTabs.forEach(btn => {
+        btn.addEventListener('click', function () {
+          platformTabs.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currentPlatform = this.getAttribute('data-platform');
+          renderHeatmap();
+        });
+      });
+    }
 
     // Year Dropdown in Header
     const yearSelect = document.getElementById('heatmap-year-select');
