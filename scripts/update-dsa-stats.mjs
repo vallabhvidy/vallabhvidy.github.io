@@ -8,6 +8,7 @@ const DATA_PATH = path.resolve(__dirname, '../static/data/dsa-stats.json');
 
 const CF_HANDLE = 'vallabhvidy';
 const LC_HANDLE = 'vallabhvidy';
+const CC_HANDLE = 'vallabhvidy';
 
 async function fetchJSON(url, options = {}, timeoutMs = 15000) {
   const controller = new AbortController();
@@ -30,7 +31,26 @@ async function fetchJSON(url, options = {}, timeoutMs = 15000) {
   }
 }
 
-// Direct LeetCode GraphQL queries
+async function fetchText(url, timeoutMs = 15000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+      }
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
+    return await res.text();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// LeetCode official GraphQL queries
 async function fetchLeetCodeGraphQL(username) {
   const profileQuery = `
     query userPublicProfile($username: String!) {
@@ -58,6 +78,14 @@ async function fetchLeetCodeGraphQL(username) {
         rating
         globalRanking
         topPercentage
+        badge {
+          name
+        }
+      }
+      userContestRankingHistory(username: $username) {
+        attended
+        rating
+        ranking
       }
     }
   `;
@@ -83,8 +111,43 @@ async function fetchLeetCodeGraphQL(username) {
 
   return {
     profile: profileRes?.data?.matchedUser,
-    contest: contestRes?.data?.userContestRanking
+    contest: contestRes?.data?.userContestRanking,
+    history: contestRes?.data?.userContestRankingHistory
   };
+}
+
+// CodeChef profile parser
+async function fetchCodeChef(username) {
+  const html = await fetchText(`https://www.codechef.com/users/${username}`);
+  const mRating = html.match(/rating-number">([^<]+)/);
+  const mHistory = html.match(/var all_rating\s*=\s*(\[[^;]+\]);/);
+
+  let rating = mRating ? parseInt(mRating[1].trim(), 10) : null;
+  let maxRating = rating;
+  let bestRank = null;
+
+  if (mHistory) {
+    try {
+      const list = JSON.parse(mHistory[1]);
+      const ratings = list.map(c => parseInt(c.rating, 10)).filter(r => !isNaN(r));
+      const ranks = list.map(c => parseInt(c.rank, 10)).filter(r => !isNaN(r) && r > 0);
+      if (ratings.length) maxRating = Math.max(...ratings);
+      if (ranks.length) bestRank = Math.min(...ranks);
+      if (!rating && list.length) rating = parseInt(list[list.length - 1].rating, 10);
+    } catch (e) {
+      console.warn('⚠️ Could not parse CodeChef history array:', e.message);
+    }
+  }
+
+  let stars = '1★';
+  if (rating >= 2500) stars = '7★';
+  else if (rating >= 2200) stars = '6★';
+  else if (rating >= 2000) stars = '5★';
+  else if (rating >= 1800) stars = '4★';
+  else if (rating >= 1600) stars = '3★';
+  else if (rating >= 1400) stars = '2★';
+
+  return { rating, maxRating, stars, bestRank };
 }
 
 async function updateStats() {
@@ -93,7 +156,8 @@ async function updateStats() {
   let existing = {
     updatedAt: new Date().toISOString(),
     leetcode: {},
-    codeforces: {}
+    codeforces: {},
+    codechef: {}
   };
 
   try {
@@ -107,11 +171,13 @@ async function updateStats() {
   const data = {
     ...existing,
     leetcode: { ...(existing.leetcode || {}) },
-    codeforces: { ...(existing.codeforces || {}) }
+    codeforces: { ...(existing.codeforces || {}) },
+    codechef: { ...(existing.codechef || {}) }
   };
 
   let cfUpdated = false;
   let lcUpdated = false;
+  let ccUpdated = false;
 
   // 1. Codeforces APIs
   try {
@@ -132,8 +198,13 @@ async function updateStats() {
     }
 
     if (cfRatingRes.status === 'fulfilled' && cfRatingRes.value.status === 'OK') {
-      data.codeforces.contestsCount = cfRatingRes.value.result.length;
-      console.log(`✅ Codeforces contests: ${data.codeforces.contestsCount}`);
+      const results = cfRatingRes.value.result || [];
+      data.codeforces.contestsCount = results.length;
+      const ranks = results.map(c => c.rank).filter(r => typeof r === 'number' && r > 0);
+      if (ranks.length) {
+        data.codeforces.bestRank = Math.min(...ranks);
+      }
+      console.log(`✅ Codeforces contests: ${data.codeforces.contestsCount}, bestRank: #${data.codeforces.bestRank}`);
       cfUpdated = true;
     }
 
@@ -194,15 +265,51 @@ async function updateStats() {
       if (lc.contest.rating !== undefined) data.leetcode.contestRating = Math.round(lc.contest.rating);
       if (lc.contest.topPercentage !== undefined) data.leetcode.contestTopPercentage = lc.contest.topPercentage;
       if (lc.contest.attendedContestsCount !== undefined) data.leetcode.contestAttended = lc.contest.attendedContestsCount;
+      if (lc.contest.badge?.name) {
+        data.leetcode.level = lc.contest.badge.name;
+      } else if (data.leetcode.contestRating >= 2150) {
+        data.leetcode.level = 'Guardian';
+      } else if (data.leetcode.contestRating >= 1850) {
+        data.leetcode.level = 'Knight';
+      }
+
+      // True peak and best rank from contest history
+      if (lc.history && Array.isArray(lc.history)) {
+        const attended = lc.history.filter(h => h.attended);
+        if (attended.length) {
+          const ratings = attended.map(h => Math.round(h.rating)).filter(r => !isNaN(r));
+          const ranks = attended.map(h => h.ranking).filter(r => typeof r === 'number' && r > 0);
+          if (ratings.length) data.leetcode.contestPeak = Math.max(...ratings);
+          if (ranks.length) data.leetcode.contestBestRank = Math.min(...ranks);
+        }
+      }
       lcUpdated = true;
-      console.log(`✅ LeetCode contest: rating=${data.leetcode.contestRating}, topPercentage=${data.leetcode.contestTopPercentage}%, attended=${data.leetcode.contestAttended}`);
+      console.log(`✅ LeetCode contest: rating=${data.leetcode.contestRating}, peak=${data.leetcode.contestPeak}, bestRank=#${data.leetcode.contestBestRank}, level=${data.leetcode.level || '—'}`);
     }
   } catch (err) {
     console.warn('⚠️ LeetCode GraphQL fetch failed:', err.message);
   }
 
-  // 3. Write back to dsa-stats.json
-  if (cfUpdated || lcUpdated) {
+  // 3. CodeChef stats
+  try {
+    console.log('Fetching CodeChef profile...');
+    const cc = await fetchCodeChef(CC_HANDLE);
+    if (cc && cc.rating) {
+      data.codechef = {
+        rating: cc.rating,
+        maxRating: cc.maxRating || cc.rating,
+        stars: cc.stars,
+        bestRank: cc.bestRank || (data.codechef?.bestRank ?? 35)
+      };
+      ccUpdated = true;
+      console.log(`✅ CodeChef profile: rating=${cc.rating}, maxRating=${data.codechef.maxRating}, stars=${cc.stars}, bestRank=#${data.codechef.bestRank}`);
+    }
+  } catch (err) {
+    console.warn('⚠️ CodeChef fetch failed:', err.message);
+  }
+
+  // 4. Write back to dsa-stats.json
+  if (cfUpdated || lcUpdated || ccUpdated) {
     data.updatedAt = new Date().toISOString();
     fs.mkdirSync(path.dirname(DATA_PATH), { recursive: true });
     fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2) + '\n', 'utf-8');

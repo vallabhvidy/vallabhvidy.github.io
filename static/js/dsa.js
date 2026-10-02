@@ -86,7 +86,12 @@
       }
 
       if (cfRatingRes.status === 'fulfilled' && cfRatingRes.value.status === 'OK') {
-        data.codeforces.contestsCount = cfRatingRes.value.result.length;
+        const results = cfRatingRes.value.result || [];
+        data.codeforces.contestsCount = results.length;
+        const ranks = results.map(c => c.rank).filter(r => typeof r === 'number' && r > 0);
+        if (ranks.length) {
+          data.codeforces.bestRank = Math.min(...ranks);
+        }
         hasNewData = true;
       }
 
@@ -133,6 +138,22 @@
         data.leetcode.contestRating = Math.round(c.contestRating);
         data.leetcode.contestTopPercentage = c.contestTopPercentage;
         data.leetcode.contestAttended = c.contestAttend;
+        if (c.badge && c.badge.name) {
+          data.leetcode.level = c.badge.name;
+        } else if (data.leetcode.contestRating >= 2150) {
+          data.leetcode.level = 'Guardian';
+        } else if (data.leetcode.contestRating >= 1850) {
+          data.leetcode.level = 'Knight';
+        }
+        if (c.history && Array.isArray(c.history)) {
+          const attended = c.history.filter(h => h.attended);
+          if (attended.length) {
+            const ratings = attended.map(h => Math.round(h.rating)).filter(r => !isNaN(r));
+            const ranks = attended.map(h => h.ranking).filter(r => typeof r === 'number' && r > 0);
+            if (ratings.length) data.leetcode.contestPeak = Math.max(...ratings);
+            if (ranks.length) data.leetcode.contestBestRank = Math.min(...ranks);
+          }
+        }
         hasNewData = true;
       }
 
@@ -159,7 +180,7 @@
     if (data.leetcode) {
       const lc = data.leetcode;
       const elTotal = document.getElementById('lc-total-solved');
-      if (elTotal && lc.totalSolved) elTotal.textContent = lc.totalSolved + '+';
+      if (elTotal && lc.totalSolved) elTotal.textContent = fmt(lc.totalSolved);
 
       const elEasy = document.getElementById('lc-easy-val');
       if (elEasy && lc.easySolved !== undefined) elEasy.textContent = lc.easySolved;
@@ -174,13 +195,27 @@
       if (lc.contestRating) {
         const elCr = document.getElementById('lc-contest-val');
         if (elCr) elCr.textContent = fmt(lc.contestRating);
-
-        const elPeak = document.getElementById('lc-contest-peak-val');
-        if (elPeak) elPeak.textContent = fmt(lc.contestRating);
       }
-      if (lc.contestTopPercentage !== undefined) {
-        const elTop = document.getElementById('lc-contest-top-val');
-        if (elTop) elTop.textContent = `${lc.contestTopPercentage}%`;
+
+      const elPeak = document.getElementById('lc-contest-peak-val');
+      if (elPeak && (lc.contestPeak || lc.contestRating)) {
+        elPeak.textContent = fmt(lc.contestPeak || lc.contestRating);
+      }
+
+      const elLevel = document.getElementById('lc-contest-level-val');
+      if (elLevel) {
+        if (lc.level) {
+          elLevel.textContent = lc.level;
+        } else if (lc.contestRating >= 2150) {
+          elLevel.textContent = 'Guardian';
+        } else if (lc.contestRating >= 1850) {
+          elLevel.textContent = 'Knight';
+        }
+      }
+
+      const elLcRank = document.getElementById('lc-contest-rank-val');
+      if (elLcRank && lc.contestBestRank) {
+        elLcRank.textContent = '#' + fmt(lc.contestBestRank);
       }
     }
 
@@ -197,6 +232,27 @@
       if (elTitle && cf.rank) {
         elTitle.textContent = cf.rank.charAt(0).toUpperCase() + cf.rank.slice(1);
       }
+
+      const elCfRank = document.getElementById('cf-rank-val');
+      if (elCfRank && cf.bestRank) {
+        elCfRank.textContent = '#' + fmt(cf.bestRank);
+      }
+    }
+
+    // --- CODECHEF ---
+    if (data.codechef) {
+      const cc = data.codechef;
+      const elCcRating = document.getElementById('cc-rating-val');
+      if (elCcRating && cc.rating) elCcRating.textContent = fmt(cc.rating);
+
+      const elCcPeak = document.getElementById('cc-peak-val');
+      if (elCcPeak && cc.maxRating) elCcPeak.textContent = fmt(cc.maxRating);
+
+      const elCcStars = document.getElementById('cc-stars-val');
+      if (elCcStars && cc.stars) elCcStars.textContent = cc.stars;
+
+      const elCcRank = document.getElementById('cc-rank-val');
+      if (elCcRank && cc.bestRank) elCcRank.textContent = '#' + fmt(cc.bestRank);
     }
   }
 

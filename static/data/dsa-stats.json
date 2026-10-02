@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T05:50:38.512Z",
+  "updatedAt": "2026-10-02T06:08:02.493Z",
   "leetcode": {
     "totalSolved": 327,
     "easySolved": 73,
@@ -103,7 +103,10 @@
       "2026-09-29": 5,
       "2026-09-30": 2,
       "2026-10-01": 1
-    }
+    },
+    "level": "Knight",
+    "contestPeak": 1870,
+    "contestBestRank": 1167
   },
   "codeforces": {
     "rating": 1438,
@@ -256,6 +259,13 @@
       "2024-05-18": 1,
       "2024-05-17": 7,
       "2024-05-16": 2
-    }
+    },
+    "bestRank": 1284
+  },
+  "codechef": {
+    "rating": 1667,
+    "maxRating": 1667,
+    "stars": "3★",
+    "bestRank": 35
   }
 }
