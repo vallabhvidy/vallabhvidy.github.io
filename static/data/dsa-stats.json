@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-10-20T04:02:41.447Z",
+  "updatedAt": "2026-10-21T03:51:18.421Z",
   "leetcode": {
     "totalSolved": 338,
     "easySolved": 76,
     "mediumSolved": 189,
     "hardSolved": 73,
-    "ranking": 432533,
+    "ranking": 430822,
     "contestRating": 1870,
     "contestTopPercentage": 5.72,
     "contestAttended": 12,
@@ -124,8 +124,10 @@
     "rank": "specialist",
     "maxRank": "specialist",
     "contestsCount": 32,
-    "problemsSolved": 347,
+    "problemsSolved": 351,
     "calendar": {
+      "2026-10-21": 1,
+      "2026-10-20": 3,
       "2026-10-02": 3,
       "2026-09-26": 2,
       "2026-09-07": 4,
